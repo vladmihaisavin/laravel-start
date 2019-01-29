@@ -1,0 +1,30 @@
+{
+  "name": "laravel-start",
+  "version": "1.0.0",
+  "description": "A small utility package for initializing a Laravel development server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "laravel-start": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SavinVladMihai/laravel-start.git"
+  },
+  "keywords": [
+    "laravel",
+    "node",
+    "script",
+    "initialize",
+    "composer",
+    "artisan"
+  ],
+  "author": "Vlad-Mihai Savin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SavinVladMihai/laravel-start/issues"
+  },
+  "homepage": "https://github.com/SavinVladMihai/laravel-start#readme"
+}
