@@ -9,10 +9,7 @@ const executeCommand = (name, options, pipe = false) => {
             if (error) {
                 reject(error);
             }
-            if (stderr) {
-                reject(stderr);
-            }
-            resolve(stdout);
+            resolve(stdout || stderr);
         });
         if (pipe && child.stdout) {
             child.stdout.on('data', (data) => {
@@ -22,13 +19,17 @@ const executeCommand = (name, options, pipe = false) => {
     });
 };
 
-executeCommand('composer install --quiet --no-interaction', { cwd: CURR_DIR })
-    .then(() => console.log('Required packages installed.'))
-.then(() => executeCommand('php artisan cache:clear', { cwd: CURR_DIR }))
-.then(() => console.log('Cache cleared.'))
-.then(() => executeCommand('php artisan migrate', { cwd: CURR_DIR }))
-.then(() => console.log('Database migrated.'))
-.then(() => console.log('Starting server'))
-.then(() => executeCommand('php artisan serve', { cwd: CURR_DIR }, true))
-.catch((err) => console.error(err));
+console.log('Installing required packages...');
+executeCommand('composer install --quiet --no-interaction --ignore-platform-reqs', { cwd: CURR_DIR })
+    .then((data) => {
+        console.log(data);
+        console.log('Required packages installed.');
+    })
+    .then(() => executeCommand('php artisan cache:clear', { cwd: CURR_DIR }))
+    .then(() => console.log('Cache cleared.'))
+    .then(() => executeCommand('php artisan migrate', { cwd: CURR_DIR }))
+    .then(() => console.log('Database migrated.'))
+    .then(() => console.log('Starting server'))
+    .then(() => executeCommand('php artisan serve', { cwd: CURR_DIR }, true))
+    .catch((err) => console.error(err));
 

@@ -1,6 +1,6 @@
 {
   "name": "laravel-start",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A small utility package for initializing a Laravel development server",
   "main": "index.js",
   "scripts": {
